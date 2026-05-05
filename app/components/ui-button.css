@@ -1,0 +1,8 @@
+/* reusable button feel */
+.btn-primary {
+  @apply px-6 py-3 bg-white text-black rounded-lg font-medium transition hover:opacity-90;
+}
+
+.btn-outline {
+  @apply px-6 py-3 border border-white/20 rounded-lg transition hover:bg-white/10;
+}
