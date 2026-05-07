@@ -17,27 +17,37 @@ const floatVariants = ["floatA", "floatB", "floatC"];
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-16 overflow-hidden pt-24 pb-12">
+    <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-16 overflow-hidden pt-20 pb-16">
 
       <HeroGlow />
 
+      {/* CENTRED NAME */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="z-10 text-center mb-10 max-w-4xl mx-auto w-full"
+      >
+        <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight" style={{ color: "var(--header-color)" }}>
+          KALALI <span style={{ color: "var(--accent)" }}>B.M</span>
+        </h1>
+      </motion.div>
+
+      {/* TEXT LEFT — PHOTO RIGHT */}
       <div className="z-10 max-w-4xl mx-auto w-full flex flex-col md:flex-row items-center gap-10 md:gap-16">
 
+        {/* LEFT */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
           className="flex-1"
         >
-          <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight" style={{ color: "var(--header-color)" }}>
-            KALALI <span style={{ color: "var(--accent)" }}>B.M</span>
-          </h1>
-
-          <p className="text-xl md:text-2xl font-semibold mt-4" style={{ color: "var(--text-muted)" }}>
+          <p className="text-xl md:text-2xl font-semibold mb-5" style={{ color: "var(--accent-soft)" }}>
             Full-Stack Software Engineer
           </p>
 
-          <p className="mt-6 leading-relaxed" style={{ color: "var(--text-muted)", fontSize: "1.05rem" }}>
+          <p className="leading-relaxed" style={{ color: "var(--text-muted)", fontSize: "1.05rem" }}>
             I build complete software systems — from the database schema to the
             UI the user touches. I have shipped fintech platforms that process
             real M-Pesa transactions, marketplace systems with trust algorithms,
@@ -46,10 +56,11 @@ export default function Hero() {
           </p>
         </motion.div>
 
+        {/* RIGHT — PHOTO */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
           className="shrink-0"
         >
           <div
@@ -69,6 +80,7 @@ export default function Hero() {
 
       </div>
 
+      {/* FLOATING TECH CLOUD */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -78,7 +90,6 @@ export default function Hero() {
         <p className="text-xs mono tracking-widest uppercase mb-6" style={{ color: "var(--text-muted)" }}>
           Technologies
         </p>
-
         <div className="flex flex-wrap gap-3 justify-start">
           {techStack.map((tech, i) => (
             <span

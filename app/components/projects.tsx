@@ -10,8 +10,6 @@ const projects = [
     slug: "servigo",
     tag: "Marketplace · SaaS",
     stack: ["FastAPI", "React", "Vite", "Neon PostgreSQL", "M-Pesa"],
-    status: "Live",
-    url: "https://servigo-8ri4.onrender.com",
   },
   {
     name: "Smart Pochi",
@@ -20,8 +18,6 @@ const projects = [
     slug: "smart-pochi",
     tag: "Fintech · SaaS",
     stack: ["FastAPI", "Python 3.11", "Neon PostgreSQL", "Render"],
-    status: "Live",
-    url: "https://smart-pochi.onrender.com",
   },
   {
     name: "ChamaKash",
@@ -30,8 +26,6 @@ const projects = [
     slug: "chamakash",
     tag: "Fintech · Savings",
     stack: ["FastAPI", "React", "PostgreSQL"],
-    status: "In Development",
-    url: null,
   },
   {
     name: "Dishi Poa",
@@ -40,8 +34,6 @@ const projects = [
     slug: "dishi-poa",
     tag: "E-commerce · Logistics",
     stack: ["Next.js", "Node.js", "PostgreSQL"],
-    status: "In Development",
-    url: null,
   },
   {
     name: "Tovia Academy",
@@ -50,8 +42,6 @@ const projects = [
     slug: "tovia-academy",
     tag: "EdTech · Platform",
     stack: ["Next.js", "FastAPI", "PostgreSQL"],
-    status: "In Development",
-    url: null,
   },
 ];
 
@@ -75,31 +65,15 @@ export default function Projects() {
         {projects.map((p, i) => (
           <div key={p.slug} className="project-card group">
 
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-              <div className="flex items-center gap-4">
-                <span className="text-3xl font-extrabold mono" style={{ color: "var(--card-border)" }}>
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="text-2xl font-bold" style={{ color: "var(--header-color)" }}>
-                    {p.name}
-                  </h3>
-                  <p className="text-xs mono mt-0.5" style={{ color: "var(--text-muted)" }}>{p.tag}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 shrink-0">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: p.status === "Live" ? "#22c55e" : "var(--text-muted)" }} />
-                  <span className="text-xs mono" style={{ color: "var(--text-muted)" }}>{p.status}</span>
-                </div>
-                {p.url && (
-                  <a href={p.url} target="_blank" rel="noopener noreferrer"
-                    className="text-xs mono px-3 py-1 rounded-full border transition-colors"
-                    style={{ color: "var(--accent)", borderColor: "var(--accent)" }}>
-                    Live ↗
-                  </a>
-                )}
+            <div className="flex items-center gap-4 mb-4">
+              <span className="text-3xl font-extrabold mono" style={{ color: "var(--card-border)" }}>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h3 className="text-2xl font-bold" style={{ color: "var(--header-color)" }}>
+                  {p.name}
+                </h3>
+                <p className="text-xs mono mt-0.5" style={{ color: "var(--text-muted)" }}>{p.tag}</p>
               </div>
             </div>
 

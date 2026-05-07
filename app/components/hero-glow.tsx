@@ -3,6 +3,12 @@
 import { useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 
+const PARTICLE_COUNT = 80;
+const MAX_DIST = 160;
+const G = 0.012;
+const MAX_SPEED = 1.8;
+const REPEL_DIST = 30;
+
 export default function HeroGlow() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { resolvedTheme } = useTheme();
@@ -20,50 +26,87 @@ export default function HeroGlow() {
     canvas.height = H;
 
     const isDark = resolvedTheme === "dark";
-    const accentColor = isDark ? "0, 229, 190" : "0, 71, 255";
+    const rgb = isDark ? "0,229,190" : "0,71,255";
 
-    const COUNT = 60;
-    const dots = Array.from({ length: COUNT }, () => ({
+    type Particle = {
+      x: number; y: number;
+      vx: number; vy: number;
+      mass: number;
+    };
+
+    const particles: Particle[] = Array.from({ length: PARTICLE_COUNT }, () => ({
       x: Math.random() * W,
       y: Math.random() * H,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      r: Math.random() * 2 + 1,
+      vx: (Math.random() - 0.5) * 0.6,
+      vy: (Math.random() - 0.5) * 0.6,
+      mass: 0.5 + Math.random() * 1.5,
     }));
+
+    function clamp(v: number, max: number) {
+      return Math.max(-max, Math.min(max, v));
+    }
 
     function draw() {
       ctx!.clearRect(0, 0, W, H);
 
-      // Draw connecting lines
-      for (let i = 0; i < COUNT; i++) {
-        for (let j = i + 1; j < COUNT; j++) {
-          const dx = dots[i].x - dots[j].x;
-          const dy = dots[i].y - dots[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 140) {
-            const alpha = (1 - dist / 140) * 0.18;
+      // Apply gravity between particles
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        for (let j = i + 1; j < PARTICLE_COUNT; j++) {
+          const dx = particles[j].x - particles[i].x;
+          const dy = particles[j].y - particles[i].y;
+          const distSq = dx * dx + dy * dy;
+          const dist = Math.sqrt(distSq);
+
+          if (dist < 1) continue;
+
+          if (dist < REPEL_DIST) {
+            // Repel when too close
+            const force = G * 8 / distSq;
+            const fx = (dx / dist) * force;
+            const fy = (dy / dist) * force;
+            particles[i].vx -= fx * particles[j].mass;
+            particles[i].vy -= fy * particles[j].mass;
+            particles[j].vx += fx * particles[i].mass;
+            particles[j].vy += fy * particles[i].mass;
+          } else if (dist < MAX_DIST) {
+            // Attract within range
+            const force = G * particles[i].mass * particles[j].mass / distSq;
+            const fx = (dx / dist) * force;
+            const fy = (dy / dist) * force;
+            particles[i].vx += fx;
+            particles[i].vy += fy;
+            particles[j].vx -= fx;
+            particles[j].vy -= fy;
+
+            // Draw connection line
+            const alpha = (1 - dist / MAX_DIST) * 0.2;
             ctx!.beginPath();
-            ctx!.strokeStyle = `rgba(${accentColor}, ${alpha})`;
-            ctx!.lineWidth = 0.8;
-            ctx!.moveTo(dots[i].x, dots[i].y);
-            ctx!.lineTo(dots[j].x, dots[j].y);
+            ctx!.strokeStyle = `rgba(${rgb},${alpha})`;
+            ctx!.lineWidth = 0.6;
+            ctx!.moveTo(particles[i].x, particles[i].y);
+            ctx!.lineTo(particles[j].x, particles[j].y);
             ctx!.stroke();
           }
         }
       }
 
-      // Draw dots
-      for (const d of dots) {
+      // Move and draw
+      for (const p of particles) {
+        p.vx = clamp(p.vx, MAX_SPEED);
+        p.vy = clamp(p.vy, MAX_SPEED);
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Wrap edges
+        if (p.x < 0) p.x = W;
+        if (p.x > W) p.x = 0;
+        if (p.y < 0) p.y = H;
+        if (p.y > H) p.y = 0;
+
         ctx!.beginPath();
-        ctx!.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-        ctx!.fillStyle = `rgba(${accentColor}, 0.5)`;
+        ctx!.arc(p.x, p.y, p.mass * 1.2, 0, Math.PI * 2);
+        ctx!.fillStyle = `rgba(${rgb},0.55)`;
         ctx!.fill();
-
-        d.x += d.vx;
-        d.y += d.vy;
-
-        if (d.x < 0 || d.x > W) d.vx *= -1;
-        if (d.y < 0 || d.y > H) d.vy *= -1;
       }
 
       animId = requestAnimationFrame(draw);
@@ -89,7 +132,7 @@ export default function HeroGlow() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full -z-10"
-      style={{ opacity: 0.8 }}
+      style={{ opacity: 0.75 }}
     />
   );
 }
