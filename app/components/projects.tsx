@@ -95,31 +95,23 @@ export default function Projects() {
                     <span className="text-xs mono" style={{ color: "var(--text-muted)" }}>{p.status}</span>
                   </div>
                   {p.url && (
-                    
-                      href={p.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
+                    <a href={p.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}
                       className="text-xs mono px-3 py-1 rounded-full border transition-colors hover:border-current"
-                      style={{ color: "var(--accent)", borderColor: "var(--accent)" }}
-                    >
+                      style={{ color: "var(--accent)", borderColor: "var(--accent)" }}>
                       Live ↗
                     </a>
                   )}
                 </div>
               </div>
 
-              {/* Headline */}
               <p className="text-base font-semibold mb-3" style={{ color: "var(--text)" }}>
                 {p.headline}
               </p>
 
-              {/* Description */}
               <p className="text-sm leading-relaxed mb-5" style={{ color: "var(--text-muted)" }}>
                 {p.desc}
               </p>
 
-              {/* Bottom */}
               <div className="flex flex-wrap items-center justify-between gap-3 pt-4" style={{ borderTop: "1px solid var(--line)" }}>
                 <div className="flex flex-wrap gap-1.5">
                   {p.stack.map((s) => (
