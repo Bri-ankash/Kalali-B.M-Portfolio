@@ -5,63 +5,104 @@ import Link from "next/link";
 const projects = [
   {
     name: "Servigo",
-    desc: "SaaS system for service management and automation.",
-    slug: "servigo"
+    desc: "African service marketplace with M-Pesa escrow, trust scoring, and 180+ service categories.",
+    slug: "servigo",
+    tag: "Marketplace · SaaS",
   },
   {
-    name: "Smart-Pochi",
-    desc: "Financial tracking and smart savings system.",
-    slug: "smart-pochi"
+    name: "Smart Pochi",
+    desc: "M-Pesa PDF/CSV financial analysis SaaS with AI-powered insights, forecasting, and premium dashboards.",
+    slug: "smart-pochi",
+    tag: "Fintech · SaaS",
   },
   {
     name: "ChamaKash",
-    desc: "Group savings and fintech coordination platform.",
-    slug: "chamakash"
+    desc: "Group savings and fintech coordination platform built for African investment groups.",
+    slug: "chamakash",
+    tag: "Fintech · Savings",
   },
   {
-    name: "Dishi-Poa",
-    desc: "Food ordering and delivery optimization system.",
-    slug: "dishi-poa"
+    name: "Dishi Poa",
+    desc: "Food ordering and delivery optimization system for local restaurants.",
+    slug: "dishi-poa",
+    tag: "E-commerce · Logistics",
   },
   {
     name: "Tovia Academy",
-    desc: "Learning platform for structured digital education.",
-    slug: "tovia-academy"
-  }
+    desc: "Structured digital learning platform with course management and progress tracking.",
+    slug: "tovia-academy",
+    tag: "EdTech · Platform",
+  },
 ];
 
 export default function Projects() {
   return (
-    <section className="px-6 max-w-5xl mx-auto py-24">
+    <section className="px-6 max-w-5xl mx-auto py-16">
 
-      {/* UPDATED HEADER */}
-      <h2 className="text-3xl font-bold mb-3">
-        Engineering Case Studies
-      </h2>
+      <div className="mb-12">
+        <span
+          className="text-xs font-mono tracking-widest uppercase"
+          style={{ color: "var(--accent)" }}
+        >
+          Selected Work
+        </span>
+        <h2
+          className="text-4xl md:text-5xl font-extrabold mt-2"
+          style={{ color: "var(--header-color)" }}
+        >
+          Engineering Case Studies
+        </h2>
+        <p className="mt-3 max-w-xl" style={{ color: "var(--text-muted)" }}>
+          Systems I have built in fintech, SaaS, and automation — solving real
+          problems for real people in Africa.
+        </p>
+      </div>
 
-      <p className="text-gray-400 mb-10 max-w-2xl">
-        Systems I have built in fintech, SaaS, and automation for real-world problems.
-      </p>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {projects.map((p, i) => (
+          <Link key={p.slug} href={`/projects/${p.slug}`} className="group block">
+            <div className="project-card h-full flex flex-col justify-between">
 
-      {/* CLEAN LIST (NO BOXES) */}
-      <div className="space-y-10">
-        {projects.map((p) => (
-          <Link
-            key={p.slug}
-            href={`/projects/${p.slug}`}
-            className="block group"
-          >
-            <h3 className="text-2xl font-semibold group-hover:text-white/70 transition">
-              {p.name}
-            </h3>
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span
+                    className="text-xs font-mono font-bold"
+                    style={{ color: "var(--accent)" }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span
+                    className="text-xs px-2 py-0.5 rounded-full border font-mono"
+                    style={{
+                      color: "var(--text-muted)",
+                      borderColor: "var(--card-border)",
+                    }}
+                  >
+                    {p.tag}
+                  </span>
+                </div>
 
-            <p className="text-gray-400 mt-2">
-              {p.desc}
-            </p>
+                <h3
+                  className="text-2xl font-bold mb-2 group-hover:opacity-80 transition-opacity"
+                  style={{ color: "var(--header-color)" }}
+                >
+                  {p.name}
+                </h3>
 
-            <p className="text-sm text-white/50 mt-3 group-hover:text-white transition">
-              Open case study →
-            </p>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
+                  {p.desc}
+                </p>
+              </div>
+
+              <div
+                className="flex items-center gap-1 mt-6 text-sm font-medium transition-all group-hover:gap-2"
+                style={{ color: "var(--accent)" }}
+              >
+                View case study
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </div>
+
+            </div>
           </Link>
         ))}
       </div>

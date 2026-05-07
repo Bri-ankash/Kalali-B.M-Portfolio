@@ -5,18 +5,16 @@ import ThemeToggle from "./components/theme-toggle";
 
 export default function Home() {
   return (
-    <main className="bg-black text-white">
-
+    <main
+      className="min-h-screen"
+      style={{ backgroundColor: "var(--bg)", color: "var(--text)" }}
+    >
       <ThemeToggle />
-
       <Hero />
-
       <Projects />
-
       <div className="px-6 max-w-5xl mx-auto pb-24">
         <HireMe />
       </div>
-
     </main>
   );
 }

@@ -2,12 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  transition: all 0.3s ease;
+:root {
+  --bg: #f8f7ff;
+  --text: #0f0e17;
+  --text-muted: #6b7280;
+  --header-color: #1e1b4b;
+  --accent: #6366f1;
+  --accent-soft: #818cf8;
+  --card-bg: #ffffff;
+  --card-border: #e0e7ff;
+  --card-hover-border: #6366f1;
+  --card-shadow: rgba(99, 102, 241, 0.12);
 }
 
-/* removes harsh edges everywhere */
+.dark {
+  --bg: #09090b;
+  --text: #f4f4f5;
+  --text-muted: #9ca3af;
+  --header-color: #e0e7ff;
+  --accent: #818cf8;
+  --accent-soft: #a5b4fc;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-hover-border: #818cf8;
+  --card-shadow: rgba(129, 140, 248, 0.15);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: var(--font-outfit, system-ui), sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-syne, system-ui), sans-serif;
+  color: var(--header-color);
+  transition: color 0.3s ease;
+}
+
 section {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+.project-card:hover {
+  border-color: var(--card-hover-border);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px var(--card-shadow);
 }
