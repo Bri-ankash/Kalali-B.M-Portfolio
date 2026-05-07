@@ -20,36 +20,29 @@ export default function Hero() {
 
       <HeroGlow />
 
-      {/* TOP — Name + Title */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
         className="z-10 max-w-4xl mx-auto w-full"
       >
-        <span
-          className="inline-block text-xs mono tracking-widest uppercase mb-5 px-3 py-1 rounded-full border"
-          style={{ color: "var(--accent)", borderColor: "var(--card-border)", backgroundColor: "var(--card-bg)" }}
-        >
-          Open to remote roles · Nairobi, Kenya
-        </span>
-
         <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight" style={{ color: "var(--header-color)" }}>
           KALALI <span style={{ color: "var(--accent)" }}>B.M</span>
         </h1>
 
-        <p className="text-xl md:text-2xl font-semibold mt-3" style={{ color: "var(--text-muted)" }}>
+        <p className="text-xl md:text-2xl font-semibold mt-4" style={{ color: "var(--text-muted)" }}>
           Full-Stack Software Engineer
         </p>
 
-        <p className="mt-5 max-w-2xl leading-relaxed" style={{ color: "var(--text-muted)", fontSize: "1.05rem" }}>
-          I engineer production-ready systems from the ground up — fintech platforms, SaaS products,
-          and APIs that handle real money and real users. I work across the full stack with a bias
-          toward reliability, clean architecture, and shipping things that actually work.
+        <p className="mt-6 max-w-2xl leading-relaxed" style={{ color: "var(--text-muted)", fontSize: "1.05rem" }}>
+          I build complete software systems — from the database schema to the
+          UI the user touches. I have shipped fintech platforms that process
+          real M-Pesa transactions, marketplace systems with trust algorithms,
+          and SaaS tools with subscription billing. Self-taught, production-hardened,
+          and comfortable owning an entire product end-to-end.
         </p>
       </motion.div>
 
-      {/* FLOATING TECH CLOUD */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
