@@ -73,62 +73,61 @@ export default function Projects() {
 
       <div className="flex flex-col gap-5">
         {projects.map((p, i) => (
-          <Link key={p.slug} href={`/projects/${p.slug}`} className="group block">
-            <div className="project-card">
+          <div key={p.slug} className="project-card group">
 
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-                <div className="flex items-center gap-4">
-                  <span className="text-3xl font-extrabold mono" style={{ color: "var(--card-border)" }}>
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <h3 className="text-2xl font-bold" style={{ color: "var(--header-color)" }}>
-                      {p.name}
-                    </h3>
-                    <p className="text-xs mono mt-0.5" style={{ color: "var(--text-muted)" }}>{p.tag}</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 shrink-0">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full" style={{ backgroundColor: p.status === "Live" ? "#22c55e" : "var(--text-muted)" }} />
-                    <span className="text-xs mono" style={{ color: "var(--text-muted)" }}>{p.status}</span>
-                  </div>
-                  {p.url && (
-                    <a href={p.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}
-                      className="text-xs mono px-3 py-1 rounded-full border transition-colors hover:border-current"
-                      style={{ color: "var(--accent)", borderColor: "var(--accent)" }}>
-                      Live ↗
-                    </a>
-                  )}
-                </div>
-              </div>
-
-              <p className="text-base font-semibold mb-3" style={{ color: "var(--text)" }}>
-                {p.headline}
-              </p>
-
-              <p className="text-sm leading-relaxed mb-5" style={{ color: "var(--text-muted)" }}>
-                {p.desc}
-              </p>
-
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-4" style={{ borderTop: "1px solid var(--line)" }}>
-                <div className="flex flex-wrap gap-1.5">
-                  {p.stack.map((s) => (
-                    <span key={s} className="text-xs mono px-2 py-0.5 rounded border"
-                      style={{ borderColor: "var(--card-border)", color: "var(--text-muted)" }}>
-                      {s}
-                    </span>
-                  ))}
-                </div>
-                <span className="text-sm font-semibold flex items-center gap-1 transition-all group-hover:gap-2"
-                  style={{ color: "var(--accent)" }}>
-                  Read case study <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+              <div className="flex items-center gap-4">
+                <span className="text-3xl font-extrabold mono" style={{ color: "var(--card-border)" }}>
+                  {String(i + 1).padStart(2, "0")}
                 </span>
+                <div>
+                  <h3 className="text-2xl font-bold" style={{ color: "var(--header-color)" }}>
+                    {p.name}
+                  </h3>
+                  <p className="text-xs mono mt-0.5" style={{ color: "var(--text-muted)" }}>{p.tag}</p>
+                </div>
               </div>
 
+              <div className="flex items-center gap-3 shrink-0">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: p.status === "Live" ? "#22c55e" : "var(--text-muted)" }} />
+                  <span className="text-xs mono" style={{ color: "var(--text-muted)" }}>{p.status}</span>
+                </div>
+                {p.url && (
+                  <a href={p.url} target="_blank" rel="noopener noreferrer"
+                    className="text-xs mono px-3 py-1 rounded-full border transition-colors"
+                    style={{ color: "var(--accent)", borderColor: "var(--accent)" }}>
+                    Live ↗
+                  </a>
+                )}
+              </div>
             </div>
-          </Link>
+
+            <p className="text-base font-semibold mb-3" style={{ color: "var(--text)" }}>
+              {p.headline}
+            </p>
+
+            <p className="text-sm leading-relaxed mb-5" style={{ color: "var(--text-muted)" }}>
+              {p.desc}
+            </p>
+
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-4" style={{ borderTop: "1px solid var(--line)" }}>
+              <div className="flex flex-wrap gap-1.5">
+                {p.stack.map((s) => (
+                  <span key={s} className="text-xs mono px-2 py-0.5 rounded border"
+                    style={{ borderColor: "var(--card-border)", color: "var(--text-muted)" }}>
+                    {s}
+                  </span>
+                ))}
+              </div>
+              <Link href={`/projects/${p.slug}`}
+                className="text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all"
+                style={{ color: "var(--accent)" }}>
+                Read case study <span className="transition-transform inline-block">→</span>
+              </Link>
+            </div>
+
+          </div>
         ))}
       </div>
 
