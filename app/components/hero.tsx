@@ -1,118 +1,169 @@
 "use client";
 
-import HeroGlow from "./hero-glow";
-import { motion } from "framer-motion";
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
+import { Download } from "lucide-react";
+import HeroGlow from "./hero-glow";
 
 const techStack = [
-  "FastAPI", "React", "Next.js", "PostgreSQL", "TypeScript",
-  "Python", "JavaScript", "Node.js", "SQLite", "Neon DB",
-  "Tailwind CSS", "REST APIs", "JWT Auth", "OAuth2", "Docker",
-  "Git", "GitHub", "Render", "Vercel", "M-Pesa API",
-  "WebSockets", "Framer Motion", "Linux", "Bash", "Redis",
-  "HTML5", "CSS3", "Figma", "Prisma", "Pydantic",
+  "FastAPI",
+  "React",
+  "Next.js",
+  "PostgreSQL",
+  "TypeScript",
+  "Python",
+  "JavaScript",
+  "Node.js",
+  "SQLite",
+  "Neon DB",
+  "Tailwind CSS",
+  "REST APIs",
+  "JWT Auth",
+  "OAuth2",
+  "Docker",
+  "Git",
+  "GitHub",
+  "Render",
+  "Vercel",
+  "M-Pesa API",
+  "WebSockets",
+  "Framer Motion",
+  "Linux",
+  "Bash",
+  "Redis",
+  "HTML5",
+  "CSS3",
+  "Figma",
+  "Prisma",
+  "Pydantic",
 ];
 
 const floatVariants = ["floatA", "floatB", "floatC"];
 
 export default function Hero() {
-  return (
-    <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-16 overflow-hidden pt-20 pb-16">
+  const shouldReduceMotion = useReducedMotion();
 
+  return (
+    <section className="relative isolate min-h-screen overflow-hidden px-6 pb-16 pt-24 md:px-12 lg:px-16">
       <HeroGlow />
 
-      {/* CENTRED NAME */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="z-10 text-center mb-10 max-w-4xl mx-auto w-full"
-      >
-        <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight" style={{ color: "var(--header-color)" }}>
-          KALALI <span style={{ color: "var(--accent)" }}>B.M</span>
-        </h1>
-      </motion.div>
-
-      {/* TEXT LEFT — PHOTO RIGHT */}
-      <div className="z-10 max-w-4xl mx-auto w-full flex flex-col md:flex-row items-center gap-10 md:gap-16">
-
-        {/* LEFT */}
+      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-10rem)] w-full max-w-6xl flex-col justify-center gap-14">
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="flex-1"
+          initial={shouldReduceMotion ? false : { opacity: 0, y: -24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="mx-auto max-w-4xl text-center"
         >
-          <p className="text-xl md:text-2xl font-semibold mb-5" style={{ color: "var(--accent-soft)" }}>
+          <h1
+            className="text-5xl font-extrabold tracking-tight md:text-7xl lg:text-8xl"
+            style={{ color: "var(--header-color)" }}
+          >
+            KALALI <span style={{ color: "var(--accent)" }}>B.M</span>
+          </h1>
+
+          <p
+            className="mt-4 text-xl font-semibold md:text-2xl"
+            style={{ color: "var(--accent-soft)" }}
+          >
             Full-Stack Software Engineer
           </p>
-
-          <p className="leading-relaxed" style={{ color: "var(--text-muted)", fontSize: "1.05rem" }}>
-            I build complete software systems — from the database schema to the
-            UI the user touches. I have shipped fintech platforms that process
-            real M-Pesa transactions, marketplace systems with trust algorithms,
-            and SaaS tools with subscription billing. Self-taught, production-hardened,
-            and comfortable owning an entire product end-to-end.
-          </p>
         </motion.div>
 
-        {/* RIGHT — PHOTO */}
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="shrink-0"
-        >
-          <div
-            className="w-56 h-64 md:w-64 md:h-80 rounded-2xl overflow-hidden border"
-            style={{ borderColor: "var(--card-border)", boxShadow: "0 8px 40px var(--accent-glow)" }}
+        <div className="hero-bio-layout">
+          <motion.div
+            initial={shouldReduceMotion ? false : { opacity: 0, x: -32 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+            className="hero-bio-copy"
           >
-            <Image
-              src="/brian.png"
-              alt="Kalali B.M"
-              width={320}
-              height={400}
-              className="w-full h-full object-cover object-top"
-              priority
-            />
-          </div>
-        </motion.div>
+            <p
+              className="max-w-2xl text-base leading-8 md:text-lg"
+              style={{ color: "var(--text-muted)" }}
+            >
+              I build complete software systems - from the database schema to
+              the UI the user touches. I have shipped fintech platforms that
+              process real M-Pesa transactions, marketplace systems with trust
+              algorithms, and SaaS tools with subscription billing.
+              Software developer from KCA UNIVERSITY. Production-hardened and
+              comfortable owning an entire product end-to-end.
+            </p>
 
-      </div>
+            <a
+              href="/brian-kalali-cv.pdf"
+              download
+              className="download-cv-button mt-7"
+              aria-label="Download Brian Kalali Musau CV as a PDF"
+            >
+              <Download size={16} aria-hidden="true" />
+              <span>Download CV</span>
+            </a>
+          </motion.div>
 
-      {/* FLOATING TECH CLOUD */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
-        className="z-10 max-w-4xl mx-auto w-full mt-14"
-      >
-        <p className="text-xs mono tracking-widest uppercase mb-6" style={{ color: "var(--text-muted)" }}>
-          Technologies
-        </p>
-        <div className="flex flex-wrap gap-3 justify-start">
-          {techStack.map((tech, i) => (
-            <span
-              key={tech}
-              className="text-xs mono px-3 py-1.5 rounded-full border select-none cursor-default"
+          <motion.figure
+            initial={shouldReduceMotion ? false : { opacity: 0, x: 32 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+            className="hero-bio-photo"
+          >
+            <div
+              className="relative aspect-[4/5] w-full overflow-hidden rounded-[8px] border"
               style={{
                 borderColor: "var(--card-border)",
-                color: "var(--text-muted)",
-                backgroundColor: "var(--card-bg)",
-                animationName: floatVariants[i % 3],
-                animationDuration: `${3.5 + (i % 5) * 0.7}s`,
-                animationDelay: `${(i % 7) * 0.2}s`,
-                animationTimingFunction: "ease-in-out",
-                animationIterationCount: "infinite",
-                display: "inline-block",
+                boxShadow: "0 18px 60px var(--accent-glow)",
               }}
             >
-              {tech}
-            </span>
-          ))}
+              <Image
+                src="/brian.png"
+                alt="Portrait of Kalali B.M, full-stack software engineer"
+                fill
+                sizes="(min-width: 1024px) 384px, (min-width: 768px) 288px, 304px"
+                className="object-cover object-top"
+                priority
+              />
+            </div>
+            <figcaption className="sr-only">
+              Kalali B.M profile photo
+            </figcaption>
+          </motion.figure>
         </div>
-      </motion.div>
 
+        <motion.div
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 22 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35, duration: 0.7, ease: "easeOut" }}
+          className="w-full"
+        >
+          <p
+            className="mb-6 text-center text-xs uppercase tracking-widest mono lg:text-left"
+            style={{ color: "var(--text-muted)" }}
+          >
+            Technologies
+          </p>
+          <div className="flex flex-wrap justify-center gap-3 lg:justify-start">
+            {techStack.map((tech, i) => (
+              <span
+                key={tech}
+                className="select-none rounded-full border px-3 py-1.5 text-xs mono"
+                style={{
+                  borderColor: "var(--card-border)",
+                  color: "var(--text-muted)",
+                  backgroundColor: "var(--card-bg)",
+                  animationName: shouldReduceMotion
+                    ? undefined
+                    : floatVariants[i % 3],
+                  animationDuration: `${3.5 + (i % 5) * 0.7}s`,
+                  animationDelay: `${(i % 7) * 0.2}s`,
+                  animationTimingFunction: "ease-in-out",
+                  animationIterationCount: "infinite",
+                  display: "inline-block",
+                }}
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }

@@ -10,6 +10,7 @@
   --header-color: #0d0d14;
   --accent: #0047ff;
   --accent-soft: #3366ff;
+  --accent-contrast: #ffffff;
   --accent-glow: rgba(0, 71, 255, 0.15);
   --card-bg: rgba(255, 255, 255, 0.7);
   --card-border: rgba(0, 0, 0, 0.08);
@@ -26,6 +27,7 @@
   --header-color: #ffffff;
   --accent: #00e5be;
   --accent-soft: #00ffcf;
+  --accent-contrast: #05110f;
   --accent-glow: rgba(0, 229, 190, 0.12);
   --card-bg: rgba(255, 255, 255, 0.03);
   --card-border: rgba(255, 255, 255, 0.07);
@@ -59,6 +61,75 @@ code, .mono {
 section {
   padding-top: 5rem;
   padding-bottom: 5rem;
+}
+
+/* Hero intro */
+.hero-bio-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(150px, 18vw, 220px);
+  align-items: center;
+  gap: clamp(1rem, 4vw, 2.5rem);
+  width: min(100%, 860px);
+  margin: 0 auto;
+}
+
+.hero-bio-copy {
+  text-align: left;
+}
+
+.hero-bio-photo {
+  justify-self: end;
+  width: 100%;
+  max-width: clamp(150px, 18vw, 220px);
+}
+
+.hero-bio-photo > div {
+  max-height: 275px;
+}
+
+.download-cv-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: fit-content;
+  min-height: 2.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  padding: 0.75rem 1.05rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.download-cv-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px var(--accent-glow);
+  filter: saturate(1.08);
+}
+
+.download-cv-button:focus-visible {
+  outline: 3px solid var(--accent-soft);
+  outline-offset: 3px;
+}
+
+@media (max-width: 380px) {
+  .hero-bio-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-bio-copy {
+    text-align: center;
+  }
+
+  .hero-bio-photo {
+    justify-self: center;
+    max-width: 190px;
+  }
 }
 
 /* Project cards */
