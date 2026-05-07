@@ -11,6 +11,8 @@ export default function DishiPoa() {
       impact="Improved order accuracy and restaurant efficiency."
       github="https://github.com/Bri-ankash/Dishi-Poa"
       demo="https://dishi-poa.onrender.com"
+      screenshot="/project-screens/dishi-poa.png"
+      screenshotAlt="Dishi Poa live restaurant ordering landing page"
     />
   );
 }

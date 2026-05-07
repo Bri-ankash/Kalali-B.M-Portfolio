@@ -50,10 +50,7 @@ export default function Projects() {
     <section className="px-6 max-w-5xl mx-auto py-16">
 
       <div className="mb-14">
-        <span className="text-xs mono tracking-widest uppercase" style={{ color: "var(--accent)" }}>
-          Selected Work
-        </span>
-        <h2 className="text-4xl md:text-5xl font-extrabold mt-2" style={{ color: "var(--header-color)" }}>
+        <h2 className="text-4xl md:text-5xl font-extrabold" style={{ color: "var(--header-color)" }}>
           What I have built
         </h2>
         <p className="mt-3 max-w-xl" style={{ color: "var(--text-muted)" }}>

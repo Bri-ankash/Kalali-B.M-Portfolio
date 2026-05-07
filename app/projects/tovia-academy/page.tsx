@@ -11,6 +11,8 @@ export default function ToviaAcademy() {
       impact="Reduced admin workload and improved data accuracy."
       github="https://github.com/Bri-ankash/tovia-academy"
       demo="https://tovia-academy.onrender.com"
+      screenshot="/project-screens/tovia-academy.png"
+      screenshotAlt="Tovia Academy live school platform landing page"
     />
   );
 }

@@ -11,6 +11,8 @@ export default function Servigo() {
       impact="Streamlined hiring and improved service accessibility across industries."
       github="https://github.com/Bri-ankash/Servigo-backend"
       demo="https://servigo-8ri4.onrender.com"
+      screenshot="/project-screens/servigo.png"
+      screenshotAlt="Servigo live marketplace landing page"
     />
   );
 }

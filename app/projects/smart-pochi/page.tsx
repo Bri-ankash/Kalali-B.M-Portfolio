@@ -11,6 +11,8 @@ export default function SmartPochi() {
       impact="Improved financial decision-making for SMEs."
       github="https://github.com/Bri-ankash/smart-pochi"
       demo="https://smart-pochi.onrender.com"
+      screenshot="/project-screens/smart-pochi.png"
+      screenshotAlt="Smart Pochi live finance app landing page"
     />
   );
 }

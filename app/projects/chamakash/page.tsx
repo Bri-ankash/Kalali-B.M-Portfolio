@@ -11,6 +11,8 @@ export default function ChamaKash() {
       impact="Reduced disputes and improved trust in savings groups."
       github="https://github.com/Bri-ankash/chamanakash"
       demo="https://chamanakash-page.onrender.com"
+      screenshot="/project-screens/chamakash.png"
+      screenshotAlt="ChamaKash live savings platform sign-in screen"
     />
   );
 }
